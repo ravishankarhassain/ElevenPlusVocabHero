@@ -1,0 +1,7 @@
+{
+  "name": "11+ Vocab Hero",
+  "description": "A gamified vocabulary learning platform for UK Year 4-6 students preparing for 11+ exams, featuring AI-powered word challenges and progress tracking.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
