@@ -27,8 +27,8 @@ const WordList: React.FC = () => {
           word: 'Benevolent',
           definition: 'Kind and helpful; showing good will towards others and wanting to do good.',
           part_of_speech: 'Adjective',
-          synonyms: ['kind', 'altruistic', 'caring'],
-          antonyms: ['malicious', 'unkind', 'spiteful'],
+          synonyms: ['kind', 'altruistic', 'caring', 'generous'],
+          antonyms: ['malicious', 'unkind', 'spiteful', 'greedy'],
           example_sentence: 'The benevolent queen gave food and warm clothes to the entire village.',
           level: 4,
           phonetic: '/bəˈnev.əl.ənt/',
@@ -38,10 +38,10 @@ const WordList: React.FC = () => {
         {
           id: '2',
           word: 'Accumulate',
-          definition: 'To gather together or acquire an increasing number or quantity of something.',
+          definition: 'To gather together or acquire an increasing number or quantity of something over time.',
           part_of_speech: 'Verb',
-          synonyms: ['collect', 'gather', 'amass'],
-          antonyms: ['disperse', 'scatter', 'dissipate'],
+          synonyms: ['collect', 'gather', 'amass', 'accrue'],
+          antonyms: ['disperse', 'scatter', 'dissipate', 'spend'],
           example_sentence: 'Dust began to accumulate on the old books in the attic.',
           level: 4,
           phonetic: '/əˈkjuː.mjə.leɪt/',
@@ -136,139 +136,140 @@ const WordList: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-700 pb-10">
-      {/* Word Detail Modal Overlay */}
+      {/* Enhanced Word Discovery Modal Overlay */}
       {selectedWord && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
           <div 
-            className="absolute inset-0 bg-black/70 backdrop-blur-xl animate-in fade-in duration-300" 
+            className="absolute inset-0 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300" 
             onClick={() => setSelectedWord(null)}
           />
-          <div className="relative w-full max-w-2xl bg-white dark:bg-surface-dark rounded-[48px] shadow-2xl overflow-hidden animate-in zoom-in slide-in-from-bottom-12 duration-500 max-h-[95vh] flex flex-col border border-white/20">
+          <div className="relative w-full max-w-3xl bg-white dark:bg-surface-dark rounded-[48px] shadow-2xl overflow-hidden animate-in zoom-in slide-in-from-bottom-12 duration-500 max-h-[95vh] flex flex-col border border-white/20">
             {/* Modal Header */}
-            <div className="p-8 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center bg-primary/5">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-3xl bg-primary text-black flex items-center justify-center shadow-lg shadow-primary/20">
-                  <span className="material-symbols-outlined text-3xl font-black">auto_awesome</span>
+            <div className="p-8 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center bg-primary/10">
+              <div className="flex items-center gap-5">
+                <div className="w-16 h-16 rounded-[24px] bg-primary text-black flex items-center justify-center shadow-lg shadow-primary/30">
+                  <span className="material-symbols-outlined text-4xl font-black">auto_awesome</span>
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-text-main dark:text-white uppercase tracking-tight">Word Discovery</h2>
-                  <p className="text-sm text-text-muted font-bold">Unlocking Master Vocabulary</p>
+                  <h2 className="text-2xl font-black text-text-main dark:text-white uppercase tracking-tight">Word Discovery</h2>
+                  <p className="text-sm text-text-muted font-bold">Unlocking Year {selectedWord.level} Mastery</p>
                 </div>
               </div>
               <button 
                 onClick={() => setSelectedWord(null)}
-                className="w-12 h-12 rounded-full hover:bg-white dark:hover:bg-gray-800 flex items-center justify-center transition-all group border border-transparent hover:border-gray-200 dark:hover:border-gray-700"
+                className="w-14 h-14 rounded-full hover:bg-white dark:hover:bg-gray-800 flex items-center justify-center transition-all group border border-transparent hover:border-gray-200 dark:hover:border-gray-700"
               >
-                <span className="material-symbols-outlined text-text-muted group-hover:text-red-500 transition-colors">close</span>
+                <span className="material-symbols-outlined text-3xl text-text-muted group-hover:text-red-500 transition-colors">close</span>
               </button>
             </div>
 
-            {/* Modal Content */}
-            <div className="p-8 lg:p-10 overflow-y-auto custom-scrollbar flex-1 space-y-10">
-              {/* Word & Phonics Section */}
-              <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
-                <div className="space-y-3">
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-blue-600 text-white px-4 py-1 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-sm">
+            {/* Modal Scrollable Content */}
+            <div className="p-8 lg:p-12 overflow-y-auto custom-scrollbar flex-1 space-y-12">
+              {/* Word, phonic, and voice */}
+              <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+                <div className="space-y-4 flex-1">
+                  <div className="flex flex-wrap gap-3">
+                    <span className="bg-blue-600 text-white px-5 py-1.5 rounded-2xl text-[12px] font-black uppercase tracking-widest shadow-sm">
                       {selectedWord.part_of_speech}
                     </span>
-                    <span className="bg-primary text-black px-4 py-1 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-sm">
-                      Year {selectedWord.level}
+                    <span className="bg-primary text-black px-5 py-1.5 rounded-2xl text-[12px] font-black uppercase tracking-widest shadow-sm">
+                      LEVEL {selectedWord.level}
                     </span>
                   </div>
-                  <h1 className="text-5xl lg:text-7xl font-black text-text-main dark:text-white capitalize tracking-tighter leading-none">
+                  <h1 className="text-6xl lg:text-8xl font-black text-text-main dark:text-white capitalize tracking-tighter leading-none">
                     {selectedWord.word}
                   </h1>
-                  <div className="flex items-center gap-3">
-                    <div className="p-1.5 bg-gray-100 dark:bg-gray-800 rounded-lg">
-                      <span className="material-symbols-outlined text-text-muted text-sm">record_voice_over</span>
-                    </div>
-                    <p className="text-2xl text-primary-dark dark:text-primary font-bold italic tracking-wide">
+                  <div className="flex items-center gap-4 bg-gray-50 dark:bg-gray-800/50 w-fit px-5 py-2 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <span className="material-symbols-outlined text-primary text-2xl">record_voice_over</span>
+                    <p className="text-3xl text-primary-dark dark:text-primary font-bold italic tracking-wider">
                       {selectedWord.phonetic || '/.../'}
                     </p>
                   </div>
                 </div>
                 <button 
                   onClick={(e) => handleSpeak(e, selectedWord.word)}
-                  className={`w-16 h-16 lg:w-24 lg:h-24 rounded-[32px] flex items-center justify-center shadow-2xl transition-all shrink-0 ${speaking === selectedWord.word ? 'bg-primary text-black animate-pulse' : 'bg-primary text-black hover:scale-110 active:scale-95 shadow-primary/30'}`}
+                  className={`w-20 h-20 lg:w-32 lg:h-32 rounded-[40px] flex items-center justify-center shadow-2xl transition-all shrink-0 ${speaking === selectedWord.word ? 'bg-primary text-black animate-pulse scale-110' : 'bg-primary text-black hover:scale-110 active:scale-95 shadow-primary/40'}`}
                 >
-                  <span className="material-symbols-outlined text-4xl lg:text-5xl font-black">{speaking === selectedWord.word ? 'graphic_eq' : 'volume_up'}</span>
+                  <span className="material-symbols-outlined text-5xl lg:text-7xl font-black">{speaking === selectedWord.word ? 'graphic_eq' : 'volume_up'}</span>
                 </button>
               </div>
 
-              {/* Definition Section */}
-              <div className="p-8 bg-gray-50 dark:bg-background-dark/50 rounded-[40px] border-2 border-transparent hover:border-primary/20 transition-all">
-                <h4 className="text-[10px] font-black text-text-muted uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-sm">menu_book</span> The Meaning
-                </h4>
-                <p className="text-2xl lg:text-3xl font-black text-text-main dark:text-white leading-tight">
-                  {selectedWord.definition}
-                </p>
+              {/* Grid for Meaning and Relationships */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                      <span className="material-symbols-outlined text-xl">menu_book</span>
+                    </div>
+                    <h4 className="text-xs font-black text-text-muted uppercase tracking-[0.4em]">The Meaning</h4>
+                  </div>
+                  <p className="text-3xl lg:text-4xl font-black text-text-main dark:text-white leading-tight">
+                    {selectedWord.definition}
+                  </p>
+                </div>
+
+                <div className="lg:col-span-5 space-y-8">
+                  <div className="space-y-4">
+                    <h4 className="text-[10px] font-black text-green-600 dark:text-green-400 uppercase tracking-[0.4em] flex items-center gap-2">
+                      <span className="material-symbols-outlined text-sm">add_circle</span> Synonyms
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedWord.synonyms.map(s => (
+                        <span key={s} className="px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-xl text-sm font-black border border-green-100 dark:border-green-800 capitalize">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-[10px] font-black text-red-600 dark:text-red-400 uppercase tracking-[0.4em] flex items-center gap-2">
+                      <span className="material-symbols-outlined text-sm">do_not_disturb_on</span> Antonyms
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedWord.antonyms.map(a => (
+                        <span key={a} className="px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-xl text-sm font-black border border-red-100 dark:border-red-800 capitalize">
+                          {a}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Usage Example Section */}
-              <section className="relative p-8 lg:p-10 bg-primary/5 dark:bg-primary/10 rounded-[48px] border-l-[12px] border-primary overflow-hidden group">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="material-symbols-outlined text-primary text-2xl font-black">history_edu</span>
-                  <h4 className="text-[10px] font-black text-text-muted uppercase tracking-[0.3em]">Usage Example</h4>
+              <section className="relative p-10 lg:p-14 bg-primary/5 dark:bg-primary/10 rounded-[56px] border-l-[16px] border-primary overflow-hidden group shadow-inner">
+                <div className="absolute -right-8 -top-8 text-primary/10 text-[200px] font-black pointer-events-none select-none">"</div>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="material-symbols-outlined text-primary text-3xl font-black">history_edu</span>
+                  <h4 className="text-[11px] font-black text-text-muted uppercase tracking-[0.5em]">Hero Usage Example</h4>
                 </div>
-                <p className="text-2xl lg:text-4xl font-black italic text-text-main dark:text-white leading-snug tracking-tight">
+                <p className="text-3xl lg:text-5xl font-black italic text-text-main dark:text-white leading-snug tracking-tight relative z-10">
                   "{selectedWord.example_sentence.split(new RegExp(`(${selectedWord.word})`, 'gi')).map((part, i) => 
                     part.toLowerCase() === selectedWord.word.toLowerCase() 
-                      ? <span key={i} className="text-primary underline decoration-primary/30 underline-offset-8 decoration-4 not-italic">{part}</span> 
+                      ? <span key={i} className="text-primary underline decoration-primary/40 underline-offset-8 decoration-[6px] not-italic">{part}</span> 
                       : part
                   )}"
                 </p>
               </section>
-
-              {/* Related Words: Synonyms & Antonyms */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 bg-green-50/50 dark:bg-green-900/10 rounded-[32px] border-2 border-green-100 dark:border-green-900/20">
-                  <h4 className="text-[10px] font-black text-green-700 dark:text-green-400 uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-sm">add_circle</span> Synonyms
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedWord.synonyms.map(s => (
-                      <span key={s} className="px-4 py-2 bg-white dark:bg-surface-dark text-text-main dark:text-white rounded-xl text-sm font-black shadow-sm border border-green-100 dark:border-green-900/50 capitalize">
-                        {s}
-                      </span>
-                    ))}
-                    {selectedWord.synonyms.length === 0 && <span className="text-text-muted italic text-xs">No synonyms listed</span>}
-                  </div>
-                </div>
-                <div className="p-6 bg-red-50/50 dark:bg-red-900/10 rounded-[32px] border-2 border-red-100 dark:border-red-900/20">
-                  <h4 className="text-[10px] font-black text-red-700 dark:text-red-400 uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-sm">do_not_disturb_on</span> Antonyms
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedWord.antonyms.map(a => (
-                      <span key={a} className="px-4 py-2 bg-white dark:bg-surface-dark text-text-main dark:text-white rounded-xl text-sm font-black shadow-sm border border-red-100 dark:border-red-900/50 capitalize">
-                        {a}
-                      </span>
-                    ))}
-                    {selectedWord.antonyms.length === 0 && <span className="text-text-muted italic text-xs">No antonyms listed</span>}
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="p-8 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-surface-dark flex flex-col sm:flex-row gap-4">
+            <div className="p-8 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-surface-dark flex flex-col sm:flex-row gap-5">
               <button 
                 onClick={(e) => toggleStar(e, selectedWord.id)}
-                className={`flex-1 py-5 px-6 rounded-2xl font-black text-lg flex items-center justify-center gap-3 border-3 transition-all ${selectedWord.isStarred ? 'bg-yellow-50 border-yellow-400 text-yellow-700' : 'bg-gray-50 dark:bg-background-dark border-transparent text-text-muted hover:border-yellow-200'}`}
+                className={`flex-1 py-6 px-8 rounded-3xl font-black text-xl flex items-center justify-center gap-4 border-4 transition-all ${selectedWord.isStarred ? 'bg-yellow-50 border-yellow-400 text-yellow-700' : 'bg-gray-50 dark:bg-background-dark border-transparent text-text-muted hover:border-yellow-200'}`}
               >
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: selectedWord.isStarred ? "'FILL' 1" : "'FILL' 0" }}>
+                <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: selectedWord.isStarred ? "'FILL' 1" : "'FILL' 0" }}>
                   {selectedWord.isStarred ? 'star' : 'star_outline'}
                 </span>
-                {selectedWord.isStarred ? 'Reviewing' : 'Star Word'}
+                {selectedWord.isStarred ? 'Starred Word' : 'Star for Later'}
               </button>
               
               <button 
                 onClick={handleReview}
-                className="flex-[1.5] py-5 px-6 bg-primary text-black font-black text-xl rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3"
+                className="flex-[1.5] py-6 px-10 bg-primary text-black font-black text-2xl rounded-3xl shadow-2xl shadow-primary/30 hover:scale-[1.03] active:scale-95 transition-all flex items-center justify-center gap-4"
               >
-                <span className="material-symbols-outlined text-2xl">stadia_controller</span>
+                <span className="material-symbols-outlined text-3xl">stadia_controller</span>
                 Begin Challenge
               </button>
             </div>
